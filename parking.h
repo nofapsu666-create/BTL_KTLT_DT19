@@ -1,46 +1,55 @@
-#ifndef PARKING_H
-#define PARKING_H
+/* =========================================================
+ * Ten File : hienthi.c
+ * Mo ta    : In so do bai do, thong ke du lieu, xu ly gio.
+ * ========================================================= */
+#include "quanlybaixe.h"
 
-#include <time.h>
+/*
+ * Ten ham: FormatThoiGian
+ * Muc dich: Chuyen time_t thanh chuoi string dinh dang chuan.
+ */
+void FormatThoiGian(time_t t, char* buffer) {
+    struct tm *tm_info = localtime(&t);
+    strftime(buffer, 30, "%d/%m/%Y %H:%M:%S", tm_info);
+}
 
-#define MAX_ROWS 5
-#define MAX_COLS 5
-#define FILE_DATA "lichsu_baixe.txt"
+/*
+ * Ten ham: InSoDo
+ * Muc dich: Duyet mang 2 chieu va in truc quan bai do ([X] la co xe, [ ] la trong).
+ */
+void InSoDo(TheXe baiOto[][MAX_COT_OTO], TheXe baiXeMay[][MAX_COT_XEMAY]) {
+    printf("\n--- SO DO KHU VUC O TO ---\n");
+    for(int i = 0; i < MAX_HANG_OTO; i++) {
+        for(int j = 0; j < MAX_COT_OTO; j++) {
+            if(baiOto[i][j].trangThai == 1) printf("[X] ");
+            else printf("[ ] ");
+        }
+        printf("\n");
+    }
 
-// Biểu phí theo bậc giờ (ĐT19)
-#define PHI_XE_MAY_BAC_1 5000   // 2 giờ đầu
-#define PHI_XE_MAY_BAC_2 3000   // Từ giờ thứ 3 trở đi
-#define PHI_OTO_BAC_1    20000  // 2 giờ đầu
-#define PHI_OTO_BAC_2    15000  // Từ giờ thứ 3 trở đi
+    printf("\n--- SO DO KHU VUC XE MAY ---\n");
+    for(int i = 0; i < MAX_HANG_XEMAY; i++) {
+        for(int j = 0; j < MAX_COT_XEMAY; j++) {
+            if(baiXeMay[i][j].trangThai == 1) printf("[X] ");
+            else printf("[ ] ");
+        }
+        printf("\n");
+    }
+}
 
-typedef enum {
-    XE_MAY = 1,
-    O_TO = 2
-} LoaiXe;
+void InThongKe(TheXe baiOto[][MAX_COT_OTO], TheXe baiXeMay[][MAX_COT_XEMAY]) {
+    int oToCoXe = 0, xeMayCoXe = 0;
+    
+    for(int i = 0; i < MAX_HANG_OTO; i++)
+        for(int j = 0; j < MAX_COT_OTO; j++)
+            if(baiOto[i][j].trangThai == 1) oToCoXe++;
 
-// Struct Quản lý Thẻ Xe (YC03)
-typedef struct {
-    char maThe[20];
-    char bienSo[20];
-    LoaiXe loaiPhuongTien;
-    time_t thoiGianVao;
-    int hangDo;
-    int cotDo;
-    int trangThai; // 0: Trống, 1: Đang trong bãi
-} TheXe;
+    for(int i = 0; i < MAX_HANG_XEMAY; i++)
+        for(int j = 0; j < MAX_COT_XEMAY; j++)
+            if(baiXeMay[i][j].trangThai == 1) xeMayCoXe++;
 
-// Hàm khởi tạo và hỗ trợ bộ đệm (YC04)
-void khoiTaoBaiXe(int bai[MAX_ROWS][MAX_COLS]);
-void xoaBoDem();
-
-// Nghiệp vụ cốt lõi (ĐT19)
-void hienThiSoDo(int bai[MAX_ROWS][MAX_COLS]);
-void xeVaoBai(int bai[MAX_ROWS][MAX_COLS], TheXe **danhSachThe, int *soLuongThe);
-void xeRaBai(int bai[MAX_ROWS][MAX_COLS], TheXe *danhSachThe, int soLuongThe);
-long long tinhTienTheoBac(LoaiXe loai, double soGio);
-
-// Thống kê & Quản lý Tệp tin (ĐT19 & YC04)
-void luuLichSuRaBai(const char* bienSo, const char* maThe, int loai, double soGio, long long thanhTien);
-void thongKeCaTruc();
-
-#endif
+    printf("\n=== BANG THONG KE CA TRUC ===\n");
+    printf("- O to dang gui: %d/%d xe\n", oToCoXe, MAX_HANG_OTO * MAX_COT_OTO);
+    printf("- Xe may dang gui: %d/%d xe\n", xeMayCoXe, MAX_HANG_XEMAY * MAX_COT_XEMAY);
+    printf("=============================\n");
+}
