@@ -25,7 +25,7 @@ typedef struct {
     time_t thoiGianVao;
 } TheXe;
 
-// --- NGUYEN MAU HAM ) ---
+// --- NGUYEN MAU HAM ---
 
 // File main.c
 void GhiLichSu(char* bienSo, int loaiXe, time_t vao, time_t ra, double tien);
