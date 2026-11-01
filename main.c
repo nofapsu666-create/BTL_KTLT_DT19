@@ -114,7 +114,7 @@ int main() {
             clearInputBuffer();
             luaChon = -1;
         } else {
-            clearInputBuffer();     // bo phan thua cua dong
+            clearInputBuffer();     //bo phan thua cua dong
         }
 
         switch (luaChon) {
