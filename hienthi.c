@@ -54,3 +54,4 @@ void thongKeCaTruc(void) {
     printf("- Tong doanh thu hien tai: %lld VND\n", tongDoanhThu);
     printf("=================================================\n");
 }
+
