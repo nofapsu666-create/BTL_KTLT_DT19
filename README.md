@@ -113,4 +113,3 @@ Ma the: P1 | Bien so: 29A-111.11 | Loai: O to | Vao: 2026-10-24 11:38:23 | Ra: 2
 - Mã thẻ dài hơn 19 ký tự bị cắt còn 19 ký tự đầu.
 
 Chi tiết trong mục 4.3.2 của báo cáo.
-
