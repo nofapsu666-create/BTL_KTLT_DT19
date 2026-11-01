@@ -1,6 +1,6 @@
 /* =========================================================
  * Ten file : quanlybaixe.h
- * Mo ta    : Hang so, kieu du lieu, bien toan cuc (extern)
+ * Mo ta    : Hang so, kieu du lieu, bien toan cuc(extern)
  *            va nguyen mau ham dung chung cho ca du an.
  * ========================================================= */
 #ifndef QUANLYBAIXE_H
@@ -57,12 +57,12 @@ extern const int SO_LUONG_MA_TINH;
 
 // --- NGUYEN MAU HAM ---
 
-// File main.c: kiem tra bien so
+// File main.c: Kiem tra bien so
 int isKyTuSeriHopLe(char c);
 int isMaTinhHopLe(int ma);
 int kiemTraBienSoHopLe(const char *bienSo, LoaiXe loai);
 
-// File xuly.c: nghiep vu
+//File xuly.c: nghiep vu
 void clearInputBuffer();
 void initQueue(Queue *q);
 int isEmpty(Queue *q);
